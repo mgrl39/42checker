@@ -1,4 +1,5 @@
 #include <unistd.h>
+#include "colors.h"
 
 // Prototype of ft_isprint
 int ft_isprint(int c);
