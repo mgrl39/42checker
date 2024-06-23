@@ -53,7 +53,7 @@ int main(void)
     c = 0;
     while (c <= 127)
     {
-        result = ft_isalpha(c);
+        result = ft_isalnum(c);
       /*
       ((c >= 'a' && c <= 'z' && result == 0) || (c >= 'A' && c <= 'Z' && result == 0)) || 
             ((c < 'A' || c > 'Z') && (c < 'a' || c > 'z') && result != 0) || (c >= '0' && c <= '9' && result == 0)
