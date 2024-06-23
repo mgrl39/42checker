@@ -34,7 +34,7 @@ int main(void)
     while (c <= 127)
     {
         result = ft_isdigit(c);
-        if (((c >= '0' && c <= '9' && result == 0) || (c < '0' || c > '9' && result != 0)))
+        if (((c >= '0' && c <= '9' && result == 0) || (c < '0' || (c > '9' && result != 0))))
         {
             // Imprimir mensaje de error en rojo
             ft_putstr(ANSI_COLOR_RED "Error: ft_isdigit('");
