@@ -89,7 +89,9 @@ int main(void)
 }
 
 // Función ft_isalpha que determina si un carácter es alfabético
-int ft_isalpha(int c)
+/*
+    int ft_isalpha(int c)
 {
     return ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'));
 }
+*/
