@@ -1,4 +1,4 @@
-#iffndef COLORS_H
+#ifndef COLORS_H
 #define COLORS_H
 
 // Regular colors
