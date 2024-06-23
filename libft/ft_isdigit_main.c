@@ -45,6 +45,8 @@ int main(void)
 {
     int c;
     int result;
+    int tests_passed = 0;
+    int tests_failed = 0;
 
     c = 0;
     while (c <= 127)
