@@ -1,2 +1,3 @@
 isdigit
 isalpha
+isprint
