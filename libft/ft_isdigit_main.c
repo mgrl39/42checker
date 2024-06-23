@@ -63,6 +63,7 @@ int main(void)
             else
                 ft_putchar('1');
             ft_putstr(ANSI_COLOR_RESET "\n");
+            tests_failed++;
         }
         else
         {
@@ -75,6 +76,7 @@ int main(void)
             else
                 ft_putchar('1');
             ft_putstr(ANSI_COLOR_RESET "\n");
+            tests_passed++;
         }
         c++;
     }
