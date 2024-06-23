@@ -36,7 +36,7 @@ int main(void)
     while (c <= 127)
     {
         result = ft_isprint(c);
-        if ((c >= 32 && c <= 126 && result == 0) || (c < 32 || c > 126 && result != 0))
+        if ((c >= 32 && c <= 126 && result == 0) || (c < 32 || (c > 126 && result != 0)))
         {
             // Imprimir mensaje de error en rojo
             ft_putstr(ANSI_COLOR_RED "Error: ft_isprint('");
