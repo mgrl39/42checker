@@ -1,4 +1,5 @@
 #include <unistd.h>
+#include "colors.h"
 
 // Prototype of ft_isdigit function
 int ft_isdigit(int c);
