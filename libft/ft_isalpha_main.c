@@ -1,4 +1,5 @@
 #include <unistd.h>
+#include "colors.h"
 
 // Prototipo de la función ft_isalpha
 int ft_isalpha(int c);
@@ -35,11 +36,6 @@ void ft_putnbr(int nb)
     }
     ft_putchar(nb + '0');
 }
-
-// Definición de colores
-#define ANSI_COLOR_RED     "\x1b[31m"
-#define ANSI_COLOR_GREEN   "\x1b[32m"
-#define ANSI_COLOR_RESET   "\x1b[0m"
 
 // Variables globales para contar pruebas pasadas y fallidas
 int tests_passed = 0;
