@@ -1,7 +1,7 @@
 #include <unistd.h>
 
-// Prototipo de la función ft_isdigit
-int ft_isdigit(int c);
+// Prototipo de la función ft_isalpha
+int ft_isalpha(int c);
 
 // Prototipo de ft_putchar
 void ft_putchar(char c)
@@ -33,11 +33,11 @@ int main(void)
     c = 0;
     while (c <= 127)
     {
-        result = ft_isdigit(c);
+        result = ft_isalpha(c);
         if ((c >= '0' && c <= '9' && result == 0) || ((c < '0' || c > '9') && result != 0))
         {
             // Imprimir mensaje de error en rojo
-            ft_putstr(ANSI_COLOR_RED "Error: ft_isdigit('");
+            ft_putstr(ANSI_COLOR_RED "Error: ft_isalpha('");
             ft_putchar(c);
             ft_putstr("') returned ");
             if (result == 0)
@@ -49,7 +49,7 @@ int main(void)
         else
         {
             // Imprimir mensaje correcto en verde
-            ft_putstr(ANSI_COLOR_GREEN "Correct: ft_isdigit('");
+            ft_putstr(ANSI_COLOR_GREEN "Correct: ft_isalpha('");
             ft_putchar(c);
             ft_putstr("') returned ");
             if (result == 0)
