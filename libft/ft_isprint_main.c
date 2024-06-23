@@ -36,28 +36,28 @@ int main(void)
     while (c <= 127)
     {
         result = ft_isprint(c);
-        if ((c >= 32 && c <= 126 && result == 0) || (c < 32 || (c > 126 && result != 0)))
+        if ((c >= 32 && c <= 126 && result == 0) || (c < 32 || c > 126 && result != 0))
         {
             // Imprimir mensaje de error en rojo
             ft_putstr(ANSI_COLOR_RED "Error: ft_isprint('");
-            ft_putchar(c);
-            ft_putstr("') returned ");
-            if (result == 0)
-                ft_putchar('0');
+            if (c >= 32 && c <= 126)
+                ft_putchar(c);
             else
-                ft_putchar('1');
+                ft_putchar('?'); // Utilizar un placeholder para caracteres no imprimibles
+            ft_putstr("') returned ");
+            ft_putchar(result == 0 ? '0' : '1');
             ft_putstr(ANSI_COLOR_RESET "\n");
         }
         else
         {
             // Imprimir mensaje correcto en verde
             ft_putstr(ANSI_COLOR_GREEN "Correct: ft_isprint('");
-            ft_putchar(c);
-            ft_putstr("') returned ");
-            if (result == 0)
-                ft_putchar('0');
+            if (c >= 32 && c <= 126)
+                ft_putchar(c);
             else
-                ft_putchar('1');
+                ft_putchar('?'); // Utilizar un placeholder para caracteres no imprimibles
+            ft_putstr("') returned ");
+            ft_putchar(result == 0 ? '0' : '1');
             ft_putstr(ANSI_COLOR_RESET "\n");
         }
         c++;
