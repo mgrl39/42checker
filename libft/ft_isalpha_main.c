@@ -20,10 +20,30 @@ void ft_putstr(char *str)
     }
 }
 
+// Prototipo de ft_putnbr
+void ft_putnbr(int nb)
+{
+    if (nb < 0)
+    {
+        ft_putchar('-');
+        nb = -nb;
+    }
+    if (nb >= 10)
+    {
+        ft_putnbr(nb / 10);
+        nb = nb % 10;
+    }
+    ft_putchar(nb + '0');
+}
+
 // Definición de colores
 #define ANSI_COLOR_RED     "\x1b[31m"
 #define ANSI_COLOR_GREEN   "\x1b[32m"
 #define ANSI_COLOR_RESET   "\x1b[0m"
+
+// Variables globales para contar pruebas pasadas y fallidas
+int tests_passed = 0;
+int tests_failed = 0;
 
 int main(void)
 {
@@ -41,11 +61,9 @@ int main(void)
             ft_putstr(ANSI_COLOR_RED "Error: ft_isalpha('");
             ft_putchar(c);
             ft_putstr("') returned ");
-            if (result == 0)
-                ft_putchar('0');
-            else
-                ft_putchar('1');
+            ft_putnbr(result);
             ft_putstr(ANSI_COLOR_RESET "\n");
+            tests_failed++;
         }
         else
         {
@@ -53,14 +71,25 @@ int main(void)
             ft_putstr(ANSI_COLOR_GREEN "Correct: ft_isalpha('");
             ft_putchar(c);
             ft_putstr("') returned ");
-            if (result == 0)
-                ft_putchar('0');
-            else
-                ft_putchar('1');
+            ft_putnbr(result);
             ft_putstr(ANSI_COLOR_RESET "\n");
+            tests_passed++;
         }
         c++;
     }
+    // Imprimir resumen de pruebas
     ft_putstr("Tests completed.\n");
+    ft_putstr("Tests passed: ");
+    ft_putnbr(tests_passed);
+    ft_putstr(", Tests failed: ");
+    ft_putnbr(tests_failed);
+    ft_putstr("\n");
+
     return 0;
+}
+
+// Función ft_isalpha que determina si un carácter es alfabético
+int ft_isalpha(int c)
+{
+    return ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'));
 }
