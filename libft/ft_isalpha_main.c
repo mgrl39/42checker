@@ -34,7 +34,8 @@ int main(void)
     while (c <= 127)
     {
         result = ft_isalpha(c);
-        if ((c >= '0' && c <= '9' && result == 0) || ((c < '0' || c > '9') && result != 0))
+        if (((c >= 'a' && c <= 'z' && result == 0) || (c >= 'A' && c <= 'Z' && result == 0)) || 
+            ((c < 'A' || c > 'Z') && (c < 'a' || c > 'z') && result != 0))
         {
             // Imprimir mensaje de error en rojo
             ft_putstr(ANSI_COLOR_RED "Error: ft_isalpha('");
