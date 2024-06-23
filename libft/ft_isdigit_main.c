@@ -21,11 +21,6 @@ void ft_putstr(char *str)
     }
 }
 
-// Definición de colores
-#define ANSI_COLOR_RED     "\x1b[31m"
-#define ANSI_COLOR_GREEN   "\x1b[32m"
-#define ANSI_COLOR_RESET   "\x1b[0m"
-
 int main(void)
 {
     int c;
