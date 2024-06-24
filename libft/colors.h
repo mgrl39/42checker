@@ -1,6 +1,12 @@
 #ifndef COLORS_H
 #define COLORS_H
 
+
+// Include
+#include <unistd.h>
+#include <stdio.h>
+#include <ctype.h>
+
 // Regular colors
 #define ANSI_COLOR_BLACK   "\x1b[0;30m"
 #define ANSI_COLOR_RED     "\x1b[0;31m"
