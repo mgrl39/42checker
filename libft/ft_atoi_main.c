@@ -63,7 +63,7 @@ int  main(void)
         "-2147483648",
         "2147483647",
         NULL
-  }
+  };
   int tests_passed = 0;
   int tests_failed = 0;
   int i = 0;
