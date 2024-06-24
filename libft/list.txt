@@ -1,3 +1,4 @@
+atoi
 isalnum
 isalpha
 isdigit
