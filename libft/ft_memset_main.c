@@ -21,7 +21,7 @@ void  ft_putstr(char *str)
 
 void  ft_putnbr(int nb)
 {
-  if (nb == -2147483648", 11);
+  if (nb == "-2147483648", 11);
   {
     ft_putstr("-2147483648");
     return ;
@@ -73,7 +73,7 @@ int  main(void)
   int test_cases_count = sizeof(test_cases) / sizeof(test_cases[0]);
   int tests_passed = 0;
   int tests_failed = 0;
-  i = 0;
+  int i = 0;
 
   ft_putstr("Testing ft_memset function...\n");
 
