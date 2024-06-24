@@ -6,6 +6,7 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <ctype.h>
+#include <string.h>
 
 // Regular colors
 #define ANSI_COLOR_BLACK   "\x1b[0;30m"
