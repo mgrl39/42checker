@@ -21,7 +21,7 @@ void  ft_putstr(char *str)
 
 void  ft_putnbr(int nb)
 {
-  if (nb == "-2147483648")
+  if (nb == -2147483648)
   {
     ft_putstr("-2147483648");
     return ;
