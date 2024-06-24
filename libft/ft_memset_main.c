@@ -111,8 +111,14 @@ int  main(void)
 
       i++;
     }
-  
-}
-  
+    ft_putstr("Summary:\n");
+    ft_putstr(ANSI_COLOR_YELLOW "Tests passed: ");
+    ft_putnbr(tests_passed);
+    ft_putstr(ANSI_COLOR_RESET ", ");
+    ft_putstr(ANSI_COLOR_YELLOW "Tests failed: ");
+    ft_putnbr(tests_failed);
+    ft_putstr(ANSI_COLOR_RESET "\n");
+
+    return 0;
   
 }
