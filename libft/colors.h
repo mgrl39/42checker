@@ -6,6 +6,7 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <ctype.h>
+#include <stdlib.h> // For standard atoi function
 #include <string.h>
 
 // Regular colors
