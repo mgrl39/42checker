@@ -2,3 +2,5 @@ isalnum
 isalpha
 isdigit
 isprint
+strlen
+toupper
