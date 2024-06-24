@@ -2,5 +2,6 @@ isalnum
 isalpha
 isdigit
 isprint
+memset
 strlen
 toupper
