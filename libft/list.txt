@@ -4,6 +4,7 @@ isalpha
 isdigit
 isprint
 memset
+putchar
 strlen
 tolower
 toupper
