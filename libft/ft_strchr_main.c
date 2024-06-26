@@ -1,7 +1,4 @@
-#include "libft.h"
 #include "colors.h"
-#include <stdio.h>
-#include <string.h>
 
 // Prototype of ft_strchr
 char    *ft_strchr(const char *s, int c);
@@ -63,9 +60,11 @@ int main(void)
 
     ft_putstr("Testing ft_strchr function...\n");
 
-    for (int i = 0; test_cases[i] != NULL; i++)
+    int i = 0;
+    while (test_cases[i] != NULL)
     {
-        for (int j = 0; j < sizeof(test_chars) / sizeof(test_chars[0]); j++)
+        int j = 0;
+        while (j < sizeof(test_chars) / sizeof(test_chars[0]))
         {
             char *result = ft_strchr(test_cases[i], test_chars[j]);
             char *expected = strchr(test_cases[i], test_chars[j]);
@@ -115,7 +114,9 @@ int main(void)
                 ft_putstr(ANSI_COLOR_RESET "\n");
                 tests_failed++;
             }
+            j++;
         }
+        i++;
     }
 
     ft_putstr("Summary:\n");
@@ -126,5 +127,10 @@ int main(void)
     ft_putnbr(tests_failed);
     ft_putstr(ANSI_COLOR_RESET "\n");
 
-    return 0;
+/*
+    // Add final message with special color
+    ft_putstr(ANSI_COLOR_PURPLE "If eventually the next message is \"https://github.com/mgrl39\" your message is correct\n" ANSI_COLOR_RESET);
+    ft_putstr("https://github.com/mgrl39\n");
+*/
+    return (0);
 }
