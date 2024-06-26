@@ -1,6 +1,8 @@
 atoi
+bzero
 isalnum
 isalpha
+isascii
 isdigit
 isprint
 memset
