@@ -86,7 +86,6 @@ int  main(void)
       strcpy(test1, test_cases[i]);
       strcpy(test2, test_cases[i]);
       size_t n = test_sizes[i];
-      int c = '*';
 
       // Use ft_memset
       ft_bzero(test1, n);
