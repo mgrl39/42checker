@@ -2,6 +2,7 @@
 #include "colors.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 // Function implementations
 void ft_putchar(char c)
@@ -47,18 +48,45 @@ void ft_lstnew_test(void *content)
 
     if (node && node->content == content && node->next == NULL)
     {
-        ft_putstr(ANSI_COLOR_GREEN "Correct: ft_lstnew(\"");
-        ft_putstr((char *)content);
-        ft_putstr("\") created a new node with content \"");
-        ft_putstr((char *)node->content);
-        ft_putstr("\" and next == NULL");
+        ft_putstr(ANSI_COLOR_GREEN "Correct: ft_lstnew(");
+        if (content == NULL)
+        {
+            ft_putstr("NULL");
+        }
+        else
+        {
+            ft_putstr("\"");
+            ft_putstr((char *)content);
+            ft_putstr("\"");
+        }
+        ft_putstr(") created a new node with content ");
+        if (node->content == NULL)
+        {
+            ft_putstr("NULL");
+        }
+        else
+        {
+            ft_putstr("\"");
+            ft_putstr((char *)node->content);
+            ft_putstr("\"");
+        }
+        ft_putstr(" and next == NULL");
         ft_putstr(ANSI_COLOR_RESET "\n");
     }
     else
     {
-        ft_putstr(ANSI_COLOR_RED "Error: ft_lstnew(\"");
-        ft_putstr((char *)content);
-        ft_putstr("\") failed to create a correct node");
+        ft_putstr(ANSI_COLOR_RED "Error: ft_lstnew(");
+        if (content == NULL)
+        {
+            ft_putstr("NULL");
+        }
+        else
+        {
+            ft_putstr("\"");
+            ft_putstr((char *)content);
+            ft_putstr("\"");
+        }
+        ft_putstr(") failed to create a correct node");
         ft_putstr(ANSI_COLOR_RESET "\n");
     }
 
