@@ -5,6 +5,8 @@ isalpha
 isascii
 isdigit
 isprint
+lstnew
+lstsize
 memset
 putchar
 strchr
