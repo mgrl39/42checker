@@ -87,13 +87,13 @@ int main(void)
     int tests_passed = 0;
     int tests_failed = 0;
 
-    printf("Testing ft_strchr function against strrchr...\n");
+    printf("Testing ft_strchr function against strchr...\n");
 
     // Iterate through test cases
     int i = 0;
     while (test_cases[i] != NULL) {
         int j = 0;
-        while (j < sizeof(test_chars) / sizeof(test_chars[0])) {
+        while ((size_t)j < sizeof(test_chars) / sizeof(test_chars[0])) {
             int c = test_chars[j];
 
             // Using ft_strchr
