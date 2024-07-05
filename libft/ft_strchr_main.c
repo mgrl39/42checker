@@ -1,53 +1,82 @@
 #include "colors.h"
 
-// Prototype of ft_strchr
-char    *ft_strchr(const char *s, int c);
+char	*ft_strchr(const char *s, int c);
 
-void    ft_putchar(char c)
+void  ft_putchar(char c)
 {
-    write(1, &c, 1);
+  write(1, &c, 1);
 }
 
-void    ft_putstr(char *str)
+int	ft_strlen(char *str)
 {
-    int i = 0;
-    while (str[i] != '\0')
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
+
+void  ft_putstr(char *str)
+{
+  int  i;
+
+  i = 0;
+  while (str[i] != '\0')
     {
-        write(1, &str[i], 1);
-        i++;
+      ft_putchar(str[i]);
+      i++;
     }
 }
 
-void    ft_putnbr(int nb)
+void  ft_putnbr(int nb)
 {
-    if (nb == -2147483648)
+  if (nb == -2147483648)
+  {
+    ft_putstr("-2147483648");
+    return ;
+  }
+  if (nb < 0)
+  {
+    ft_putchar('-');
+    nb = -nb;
+  }
+  if (nb >= 10)
+  {
+    ft_putnbr(nb / 10);
+  }
+  ft_putchar(nb % 10 + '0');
+}
+
+void  print_memory(void *mem, size_t size)
+{
+  unsigned char *ptr;
+  size_t  i;
+
+  ptr = (unsigned char *)mem;
+  i = 0;
+  while (i < size)
     {
-        write(1, "-2147483648", 11);
-        return;
+      if (ptr[i] >= 32 && ptr[i] <= 126) // Printable characters
+        ft_putchar(ptr[i]);
+      else
+        ft_putchar('.');
+      i++;
     }
-    if (nb < 0)
-    {
-        ft_putchar('-');
-        nb = -nb;
-    }
-    if (nb >= 10)
-    {
-        ft_putnbr(nb / 10);
-    }
-    ft_putchar(nb % 10 + '0');
+  ft_putstr("\n");
 }
 
 int main(void)
 {
     char *test_cases[] = {
         "Hello, world!",
-        "42",
-        "The quick brown fox jumps over the lazy dog",
-        "Find the character",
-        "Another test case",
+        "1234567890",
+        "abcdefghijklmnopqrstuvwxyz",
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+        "!@#$%^&*()_+",
         "",
         "\0Hidden",
-        "1234567890",
+        "The quick brown fox jumps over the lazy dog",
         NULL
     };
 
@@ -58,79 +87,38 @@ int main(void)
     int tests_passed = 0;
     int tests_failed = 0;
 
-    ft_putstr("Testing ft_strchr function...\n");
+    printf("Testing ft_strchr function against strrchr...\n");
 
+    // Iterate through test cases
     int i = 0;
-    while (test_cases[i] != NULL)
-    {
+    while (test_cases[i] != NULL) {
         int j = 0;
-        while (j < sizeof(test_chars) / sizeof(test_chars[0]))
-        {
-            char *result = ft_strchr(test_cases[i], test_chars[j]);
-            char *expected = strchr(test_cases[i], test_chars[j]);
+        while (j < sizeof(test_chars) / sizeof(test_chars[0])) {
+            int c = test_chars[j];
 
-            if (result == expected)
-            {
-                ft_putstr(ANSI_COLOR_GREEN "Correct: ft_strchr(\"");
-                ft_putstr(test_cases[i]);
-                ft_putstr("\", '");
-                ft_putchar(test_chars[j]);
-                ft_putstr("') returned ");
-                if (result != NULL)
-                {
-                    ft_putstr(result);
-                }
-                else
-                {
-                    ft_putstr("NULL");
-                }
-                ft_putstr(ANSI_COLOR_RESET "\n");
+            // Using ft_strchr
+            char *result_ft = ft_strchr(test_cases[i], c);
+            // Using strchr from <string.h>
+            char *result_std = strchr(test_cases[i], c);
+
+            if (result_ft == result_std) {
+                printf(ANSI_COLOR_GREEN "Test Passed: ft_strchr(\"%s\", '%c') returned %p, expected %p\n" ANSI_COLOR_RESET,
+                       test_cases[i], c, result_ft, result_std);
                 tests_passed++;
-            }
-            else
-            {
-                ft_putstr(ANSI_COLOR_RED "Error: ft_strchr(\"");
-                ft_putstr(test_cases[i]);
-                ft_putstr("\", '");
-                ft_putchar(test_chars[j]);
-                ft_putstr("') returned ");
-                if (result != NULL)
-                {
-                    ft_putstr(result);
-                }
-                else
-                {
-                    ft_putstr("NULL");
-                }
-                ft_putstr(", expected ");
-                if (expected != NULL)
-                {
-                    ft_putstr(expected);
-                }
-                else
-                {
-                    ft_putstr("NULL");
-                }
-                ft_putstr(ANSI_COLOR_RESET "\n");
+            } else {
+                printf(ANSI_COLOR_RED "Test Failed: ft_strchr(\"%s\", '%c') returned %p, expected %p\n" ANSI_COLOR_RESET,
+                       test_cases[i], c, result_ft, result_std);
                 tests_failed++;
             }
+
             j++;
         }
         i++;
     }
 
-    ft_putstr("Summary:\n");
-    ft_putstr(ANSI_COLOR_YELLOW "Tests passed: ");
-    ft_putnbr(tests_passed);
-    ft_putstr(ANSI_COLOR_RESET ", ");
-    ft_putstr(ANSI_COLOR_YELLOW "Tests failed: ");
-    ft_putnbr(tests_failed);
-    ft_putstr(ANSI_COLOR_RESET "\n");
+    printf("Summary:\n");
+    printf(ANSI_COLOR_YELLOW "Tests passed: %d\n" ANSI_COLOR_RESET, tests_passed);
+    printf(ANSI_COLOR_YELLOW "Tests failed: %d\n" ANSI_COLOR_RESET, tests_failed);
 
-/*
-    // Add final message with special color
-    ft_putstr(ANSI_COLOR_PURPLE "If eventually the next message is \"https://github.com/mgrl39\" your message is correct\n" ANSI_COLOR_RESET);
-    ft_putstr("https://github.com/mgrl39\n");
-*/
-    return (0);
+    return 0;
 }
