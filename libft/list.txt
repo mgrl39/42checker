@@ -15,5 +15,6 @@ strchr
 strlcat
 strlen
 strncmp
+strrchr
 tolower
 toupper
