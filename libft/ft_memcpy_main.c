@@ -1,57 +1,61 @@
+#include <stddef.h>
+#include <stdio.h>
+#include <string.h>
+#include <unistd.h>
 #include "colors.h"
 
 void    *ft_memcpy(void *dest, const void *src, size_t n);
 
 void    ft_putchar(char c)
 {
-        write(1, &c, 1);
+    write(1, &c, 1);
 }
 
 void    ft_putstr(char *str)
 {
-        int     i;
+    int     i;
 
-        i = 0;
-        while (str[i] != '\0')
-        {
-                ft_putchar(str[i]);
-                i++;
-        }
+    i = 0;
+    while (str[i] != '\0')
+    {
+        ft_putchar(str[i]);
+        i++;
+    }
 }
 
 void    ft_putnbr(int nb)
 {
-        if (nb == -2147483648)
-        {
-                ft_putstr("-2147483648");
-                return ;
-        }
-        if (nb < 0)
-        {
-                ft_putchar('-');
-                nb = -nb;
-        }
-        if (nb >= 10)
-                ft_putnbr(nb / 10);
-        ft_putchar(nb % 10 + '0');
+    if (nb == -2147483648)
+    {
+        ft_putstr("-2147483648");
+        return ;
+    }
+    if (nb < 0)
+    {
+        ft_putchar('-');
+        nb = -nb;
+    }
+    if (nb >= 10)
+        ft_putnbr(nb / 10);
+    ft_putchar(nb % 10 + '0');
 }
 
 void    print_memory(void *mem, size_t size)
 {
-        unsigned char *ptr;
-        size_t  i;
+    unsigned char *ptr;
+    size_t  i;
 
-        ptr = (unsigned char *)mem;
-        i = 0;
-        while (i < size)
-        {
-                if (ptr[i] >= 32 && ptr[i] <= 126)
-                        ft_putchar(ptr[i]);
-                else
-                        ft_putchar('.');
-                i++;
-        }
-        ft_putstr("\n");
+    ptr = (unsigned char *)mem;
+    i = 0;
+    while (i < size)
+    {
+        if (ptr[i] >= 32 && ptr[i] <= 126)
+            ft_putchar(ptr[i]);
+        else
+            ft_putchar('.');
+        i++;
+    }
+    ft_putstr("\n");
 }
 
 int     main(void)
@@ -68,7 +72,6 @@ int     main(void)
         NULL
     };
 
-    char test_cases_dst[8][50] = {0};
     size_t test_sizes[] = {5, 10, 0, 7, 8, 1, 6, 20};
     int tests_passed = 0;
     int tests_failed = 0;
