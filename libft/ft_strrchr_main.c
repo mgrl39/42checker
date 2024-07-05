@@ -1,69 +1,65 @@
+#include <stdio.h>
+#include <string.h>
+#include <unistd.h>
 #include "colors.h"
 
-char	*ft_strrchr(const char *s, int c);
+char *ft_strrchr(const char *s, int c);
 
-void  ft_putchar(char c)
+void ft_putchar(char c)
 {
-  write(1, &c, 1);
+    write(1, &c, 1);
 }
 
-int	ft_strlen(char *str)
+int ft_strlen(char *str)
 {
-	int	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
+    int i = 0;
+    while (str[i])
+        i++;
+    return i;
 }
 
-void  ft_putstr(char *str)
+void ft_putstr(char *str)
 {
-  int  i;
-
-  i = 0;
-  while (str[i] != '\0')
+    int i = 0;
+    while (str[i] != '\0')
     {
-      ft_putchar(str[i]);
-      i++;
+        ft_putchar(str[i]);
+        i++;
     }
 }
 
-void  ft_putnbr(int nb)
+void ft_putnbr(int nb)
 {
-  if (nb == -2147483648)
-  {
-    ft_putstr("-2147483648");
-    return ;
-  }
-  if (nb < 0)
-  {
-    ft_putchar('-');
-    nb = -nb;
-  }
-  if (nb >= 10)
-  {
-    ft_putnbr(nb / 10);
-  }
-  ft_putchar(nb % 10 + '0');
+    if (nb == -2147483648)
+    {
+        ft_putstr("-2147483648");
+        return;
+    }
+    if (nb < 0)
+    {
+        ft_putchar('-');
+        nb = -nb;
+    }
+    if (nb >= 10)
+    {
+        ft_putnbr(nb / 10);
+    }
+    ft_putchar(nb % 10 + '0');
 }
 
-void  print_memory(void *mem, size_t size)
+void print_memory(void *mem, size_t size)
 {
-  unsigned char *ptr;
-  size_t  i;
-
-  ptr = (unsigned char *)mem;
-  i = 0;
-  while (i < size)
+    unsigned char *ptr = (unsigned char *)mem;
+    size_t i = 0;
+    while (i < size)
     {
-      if (ptr[i] >= 32 && ptr[i] <= 126) // Printable characters
-        ft_putchar(ptr[i]);
-      else
-        ft_putchar('.');
-      i++;
+        if (ptr[i] >= 32 && ptr[i] <= 126) // Printable characters
+            ft_putchar(ptr[i]);
+        else
+            ft_putchar('.');
+        i++;
     }
-  ft_putstr("\n");
+    ft_putstr("\n");
 }
 
 int main(void)
@@ -91,9 +87,11 @@ int main(void)
 
     // Iterate through test cases
     int i = 0;
-    while (test_cases[i] != NULL) {
+    while (test_cases[i] != NULL)
+    {
         int j = 0;
-        while (j < sizeof(test_chars) / sizeof(test_chars[0])) {
+        while (j < (int)(sizeof(test_chars) / sizeof(test_chars[0])))
+        {
             int c = test_chars[j];
 
             // Using ft_strrchr
@@ -101,11 +99,14 @@ int main(void)
             // Using strrchr from <string.h>
             char *result_std = strrchr(test_cases[i], c);
 
-            if (result_ft == result_std) {
+            if (result_ft == result_std)
+            {
                 printf(ANSI_COLOR_GREEN "Test Passed: ft_strrchr(\"%s\", '%c') returned %p, expected %p\n" ANSI_COLOR_RESET,
                        test_cases[i], c, result_ft, result_std);
                 tests_passed++;
-            } else {
+            }
+            else
+            {
                 printf(ANSI_COLOR_RED "Test Failed: ft_strrchr(\"%s\", '%c') returned %p, expected %p\n" ANSI_COLOR_RESET,
                        test_cases[i], c, result_ft, result_std);
                 tests_failed++;
