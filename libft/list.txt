@@ -7,9 +7,13 @@ isdigit
 isprint
 lstnew
 lstsize
+memcmp
+memcpy
 memset
 putchar
 strchr
+strlcat
 strlen
+strncmp
 tolower
 toupper
