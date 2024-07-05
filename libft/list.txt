@@ -10,7 +10,6 @@ lstsize
 memcmp
 memcpy
 memset
-putchar
 strchr
 strlcat
 strlen
