@@ -5,6 +5,7 @@ isalpha
 isascii
 isdigit
 isprint
+itoa
 lstnew
 lstsize
 memchr
