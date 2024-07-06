@@ -8,6 +8,7 @@ isdigit
 isprint
 itoa
 lstadd_back
+lstadd_front
 lstnew
 lstsize
 memchr
