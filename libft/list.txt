@@ -30,6 +30,7 @@ strmapi
 strncmp
 strnstr
 strrchr
+strtrim
 substr
 tolower
 toupper
