@@ -20,6 +20,7 @@ putstr_fd
 strchr
 strdup
 strlcat
+strlcpy
 strlen
 strncmp
 strrchr
