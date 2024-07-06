@@ -1,5 +1,6 @@
 atoi
 bzero
+calloc
 isalnum
 isalpha
 isascii
@@ -12,10 +13,16 @@ memchr
 memcmp
 memcpy
 memset
+putchar_fd
+putendl_fd
+putnbr_fd
+putstr_fd
 strchr
+strdup
 strlcat
 strlen
 strncmp
 strrchr
+substr
 tolower
 toupper
