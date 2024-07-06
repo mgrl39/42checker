@@ -1,37 +1,79 @@
 #include "libft.h"
+#include "colors.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-#include "colors.h"
+
 // ANSI color codes for colored output
 /*
-
-#define ANSI_COLOR_RED "\x1b[31m"
+ * #define ANSI_COLOR_RED "\x1b[31m"
 #define ANSI_COLOR_GREEN "\x1b[32m"
 #define ANSI_COLOR_YELLOW "\x1b[33m"
 #define ANSI_COLOR_RESET "\x1b[0m"
 */
+
 // Function prototypes
 void ft_putchar(char c);
 void ft_putstr(char *str);
 void ft_putnbr(int nb);
-void ft_striteri(char *s, void (*f)(unsigned int, char*));
+char *ft_strjoin(char const *s1, char const *s2);
 
-// Function to be used with ft_striteri
-void to_uppercase(unsigned int i, char *c)
+size_t	ft_strlen(const char *str)
 {
-    (void)i; // Ignore index for this function
-    if (*c >= 'a' && *c <= 'z')
-    {
-        *c = *c - 32;
-    }
-}
+	size_t	i;
 
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
 // Function implementations
 void ft_putchar(char c)
 {
     write(1, &c, 1);
+}
+
+size_t	ft_strlcpy(char *dst, const char *src, size_t dsize)
+{
+	size_t	slen;
+	size_t	i;
+
+	slen = ft_strlen(src);
+	i = 0;
+	if (dsize < 1)
+		return (slen);
+	while (src[i] != '\0' && i < dsize - 1)
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = '\0';
+	return (slen);
+}
+
+size_t	ft_strlcat(char *dst, const char *src, size_t dsize)
+{
+	size_t	i;
+	size_t	len;
+
+	if (!src)
+		return (0);
+	if (!dst)
+	{
+		if (dsize == 0)
+			return (ft_strlen(src));
+		else
+			return (0);
+	}
+	i = 0;
+	while (*dst && i < dsize)
+	{
+		++dst;
+		++i;
+	}
+	len = ft_strlcpy(dst, src, dsize - i);
+	return (len + i);
 }
 
 void ft_putstr(char *str)
@@ -63,63 +105,64 @@ void ft_putnbr(int nb)
     ft_putchar(nb % 10 + '0');
 }
 
-// Test function for ft_striteri
-int ft_striteri_test(char *str, void (*f)(unsigned int, char*), const char *expected)
+// Test function for ft_strjoin
+int ft_strjoin_test(const char *s1, const char *s2, const char *expected)
 {
-    char *original = strdup(str); // Duplicate the original string for display purposes
-    ft_putstr("Testing ft_striteri function...\n");
+    ft_putstr("Testing ft_strjoin function...\n");
 
-    ft_putstr("Original string: ");
-    ft_putstr(original);
+    ft_putstr("String 1: ");
+    ft_putstr((char *)s1);
     ft_putstr("\n");
 
-    ft_striteri(str, f);
-
-    ft_putstr("Modified string: ");
-    ft_putstr(str);
+    ft_putstr("String 2: ");
+    ft_putstr((char *)s2);
     ft_putstr("\n");
 
-    int result = 0;
-    if (strcmp(str, expected) == 0)
+    char *result = ft_strjoin(s1, s2);
+
+    ft_putstr("Joined string: ");
+    ft_putstr(result);
+    ft_putstr("\n");
+
+    int test_result = 0;
+    if (strcmp(result, expected) == 0)
     {
-        ft_putstr(ANSI_COLOR_GREEN "Correct: The modified string matches the expected result\n" ANSI_COLOR_RESET);
-        result = 1;
+        ft_putstr(ANSI_COLOR_GREEN "Correct: The joined string matches the expected result\n" ANSI_COLOR_RESET);
+        test_result = 1;
     }
     else
     {
-        ft_putstr(ANSI_COLOR_RED "Error: The modified string does not match the expected result\n" ANSI_COLOR_RESET);
+        ft_putstr(ANSI_COLOR_RED "Error: The joined string does not match the expected result\n" ANSI_COLOR_RESET);
     }
 
-    free(original); // Free the duplicated string
-    return result;
+    free(result); // Free the joined string
+    return test_result;
 }
 
 int main(void)
 {
     // Array of test cases
-    char *test_cases[] = {
-        "abc", "ABC", "123", "Hello, World!", "",
-        "aBcDeF", "HeLlO wOrLd", "42Seoul", "tEsT cAsE", "AnotherTest",
-        "lowercase", "UPPERCASE", "1234567890", "!@#$%^&*()", "mixedCASE",
-        "short", "looooooooooooooooong", "MiXeD1234", "edgeCASE", "simple",
-        NULL
-    };
-    // Array of expected results
-    char *expected_results[] = {
-        "ABC", "ABC", "123", "HELLO, WORLD!", "",
-        "ABCDEF", "HELLO WORLD", "42SEOUL", "TEST CASE", "ANOTHERTEST",
-        "LOWERCASE", "UPPERCASE", "1234567890", "!@#$%^&*()", "MIXEDCASE",
-        "SHORT", "LOOOOOOOOOOOOOOOOONG", "MIXED1234", "EDGECASE", "SIMPLE"
+    char *test_cases[][3] = {
+        {"Hello", " World!", "Hello World!"},
+        {"Foo", "Bar", "FooBar"},
+        {"", "Empty", "Empty"},
+        {"Empty", "", "Empty"},
+        {"", "", ""},
+        {"123", "456", "123456"},
+        {"ft_", "strjoin", "ft_strjoin"},
+        {"Upper", "CASE", "UpperCASE"},
+        {"Space", " Test", "Space Test"},
+        {"Number", " 123", "Number 123"},
+        {NULL, NULL, NULL} // End marker
     };
 
-    int total_tests = 20;
+    int total_tests = 10;
     int tests_passed = 0;
     int tests_failed = 0;
 
     for (int i = 0; i < total_tests; i++)
     {
-        char *str = strdup(test_cases[i]);
-        if (ft_striteri_test(str, to_uppercase, expected_results[i]))
+        if (ft_strjoin_test(test_cases[i][0], test_cases[i][1], test_cases[i][2]))
         {
             tests_passed++;
         }
@@ -127,7 +170,6 @@ int main(void)
         {
             tests_failed++;
         }
-        free(str);
     }
 
     // Print summary
