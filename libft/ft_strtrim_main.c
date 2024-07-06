@@ -4,6 +4,7 @@
 #include <string.h>
 #include <unistd.h>
 #include "colors.h"
+
 /*
 // ANSI color codes for colored output
 #define ANSI_COLOR_RED "\x1b[31m"
@@ -11,6 +12,7 @@
 #define ANSI_COLOR_YELLOW "\x1b[33m"
 #define ANSI_COLOR_RESET "\x1b[0m"
 */
+
 // Function prototypes
 void ft_putchar(char c);
 void ft_putstr(char *str);
@@ -142,6 +144,28 @@ int main(void)
         const char *expected;
     } TestCase;
 
+    TestCase test_cases[] = {
+        {"   hello   ", " ", "hello"},
+        {"--hello--", "-", "hello"},
+        {"  abc  def  ", " ", "abc  def"},
+        {"xyz", "xyz", ""},
+        {"abc", "", "abc"},
+        {"   ", " ", ""},
+        {"123hello321", "123", "hello"},
+        {"!!!hello!!!", "!", "hello"},
+        {"trim me", " ", "trim me"},
+        {"   leading spaces", " ", "leading spaces"},
+        {"trailing spaces   ", " ", "trailing spaces"},
+        {"--------", "-", ""},
+        {"", "", ""},
+        {"\t\t\ttabs\t\t\t", "\t", "tabs"},
+        {"^&^&^&hello^&^&^&", "^&", "hello"},
+        {"\n\n\nnewlines\n\n\n", "\n", "newlines"},
+        {" !@#$%^&*(){}[]|\\;:'\",.<>/?", " !@#$%^&*(){}[]|\\;:'\",.<>/?", ""},
+        {"  \\ \\\\ \\n\\n\\t\\ttrimmed  \\t\\t\\n\\n  ", " \\n\\t", "rimmed"}
+    };
+
+    /*
     // Array of test cases
     TestCase test_cases[] = {
         {"   hello   ", " ", "hello"},
@@ -156,7 +180,7 @@ int main(void)
         {"   leading spaces", " ", "leading spaces"},
         {"trailing spaces   ", " ", "trailing spaces"}
     };
-
+*/
     int total_tests = sizeof(test_cases) / sizeof(TestCase);
     int tests_passed = 0;
     int tests_failed = 0;
