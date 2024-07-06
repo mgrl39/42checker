@@ -23,6 +23,7 @@ strlcat
 strlcpy
 strlen
 strncmp
+strnstr
 strrchr
 substr
 tolower
