@@ -21,6 +21,7 @@ putnbr_fd
 putstr_fd
 strchr
 strdup
+striteri
 strlcat
 strlcpy
 strlen
