@@ -4,6 +4,8 @@
 #include <unistd.h>
 #include <string.h>
 
+size_t	ft_strlen(const char *str);
+
 // Implementation of ft_putchar
 void ft_putchar(char c)
 {
