@@ -4,6 +4,8 @@
 #include "libft.h" // Assuming this header contains ft_itoa declaration
 #include "colors.h"
 
+char *ft_itoa(int n);
+
 // Implementation of ft_putchar
 void ft_putchar(char c)
 {
