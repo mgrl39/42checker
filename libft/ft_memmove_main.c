@@ -45,7 +45,7 @@ int main(void)
     char src1[100] = "ghijkl";
     char dest2[100] = "abcdef";
     char src2[100] = "ghijkl";
-    char dest3[100] = "abcdef";
+    char dest3[100] = "abcdef";r
     char src3[100] = "abcdef";
     char dest4[100] = "abcdef";
     char src4[100] = "abcdef";
@@ -63,13 +63,10 @@ int main(void)
     char src10[100] = "123456789";
 
     char dest11[100] = "overlap";
-    char src11[100] = "lapover";
     char dest12[100] = "abc123def";
     char src12[100] = "456";
     char dest13[100] = "abcdef";
-    char src13[100] = "cdef";
     char dest14[100] = "abcdef";
-    char src14[100] = "abc";
 
     TestCase test_cases[] = {
         { dest1, src1, 6 },
