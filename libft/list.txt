@@ -14,6 +14,7 @@ lstsize
 memchr
 memcmp
 memcpy
+memmove
 memset
 putchar_fd
 putendl_fd
