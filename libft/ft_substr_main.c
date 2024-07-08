@@ -6,6 +6,27 @@
 
 char		*ft_substr(char const *s, unsigned int start, size_t len);
 
+char	*ft_strdup(const char *s1)
+{
+	int		i;
+	char	*dest;
+
+	i = 0;
+	while (s1[i] != '\0')
+		i++;
+	dest = (char *)malloc(sizeof(char) * (i + 1));
+	if (!dest)
+		return (NULL);
+	i = 0;
+	while (s1[i] != '\0')
+	{
+		dest[i] = s1[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
+}
+
 size_t	ft_strlen(const char *str)
 {
     size_t	i = 0;
