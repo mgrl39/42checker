@@ -4,6 +4,8 @@
 #include "libft.h" // Asumiendo que este archivo contiene la declaración de ft_substr
 #include "colors.h" // Definición de colores ANSI para mejor visualización
 
+char		*ft_substr(char const *s, unsigned int start, size_t len);
+
 size_t	ft_strlen(const char *str)
 {
     size_t	i = 0;
