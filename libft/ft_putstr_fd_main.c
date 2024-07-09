@@ -12,14 +12,14 @@ size_t  ft_strlen(char *str)
                 i++;
         return (i);
 }
-int main(void)
-{
-    // Prototipo de ft_putchar_fd
+
     void ft_putchar_fd(char c, int fd)
     {
         write(fd, &c, 1);
     }
 
+int main(void)
+{
     // Mensaje inicial en color naranja claro (stdout)
     ft_putstr_fd(ANSI_COLOR_BOLD_YELLOW "If you see both the following message and the link, then your message is correct:\n", 1);
     ft_putstr_fd("\"https://github.com/mgrl39/42checker\" (without double quotes)\n", 1);
