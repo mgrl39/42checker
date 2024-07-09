@@ -4,6 +4,8 @@
 #include "libft.h"
 #include "colors.h" // Assumiendo que este header define códigos de color ANSI para la salida en terminal
 
+void	*ft_calloc(size_t nmemb, size_t size);
+
 void    ft_putchar(char c)
 {
         write(1, &c, 1);
