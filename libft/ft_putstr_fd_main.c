@@ -13,10 +13,10 @@ size_t  ft_strlen(char *str)
         return (i);
 }
 
-    void ft_putchar_fd(char c, int fd)
-    {
+void ft_putchar_fd(char c, int fd)
+{
         write(fd, &c, 1);
-    }
+}
 
 int main(void)
 {
