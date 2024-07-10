@@ -20,6 +20,7 @@ putchar_fd
 putendl_fd
 putnbr_fd
 putstr_fd
+split
 strchr
 strdup
 striteri
