@@ -41,6 +41,24 @@
 // Reset Color
 #define ANSI_COLOR_RESET   "\x1b[0m"
 
+#ifndef strlcpy
+size_t strlcpy(char *dst, const char *src, size_t dsize) {
+    size_t slen;
+    size_t i;
+
+    slen = strlen(src);
+    i = 0;
+    if (dsize < 1)
+        return slen;
+    while (src[i] != '\0' && i < dsize - 1) {
+        dst[i] = src[i];
+        i++;
+    }
+    dst[i] = '\0';
+    return slen;
+}
+#endif
+
 // String manipulation functions
 #ifndef strlcat
 size_t strlcat(char *dst, const char *src, size_t dsize) {
@@ -62,24 +80,6 @@ size_t strlcat(char *dst, const char *src, size_t dsize) {
     }
     len = strlcpy(dst, src, dsize - i);
     return len + i;
-}
-#endif
-
-#ifndef strlcpy
-size_t strlcpy(char *dst, const char *src, size_t dsize) {
-    size_t slen;
-    size_t i;
-
-    slen = strlen(src);
-    i = 0;
-    if (dsize < 1)
-        return slen;
-    while (src[i] != '\0' && i < dsize - 1) {
-        dst[i] = src[i];
-        i++;
-    }
-    dst[i] = '\0';
-    return slen;
 }
 #endif
 
