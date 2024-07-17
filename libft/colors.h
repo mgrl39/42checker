@@ -1,7 +1,6 @@
 #ifndef COLORS_H
 #define COLORS_H
 
-
 // Include
 #include <unistd.h>
 #include <stdio.h>
@@ -42,11 +41,46 @@
 // Reset Color
 #define ANSI_COLOR_RESET   "\x1b[0m"
 
+// String manipulation functions
+#ifndef strlcat
+size_t strlcat(char *dst, const char *src, size_t dsize) {
+    size_t i;
+    size_t len;
+
+    if (!src)
+        return 0;
+    if (!dst) {
+        if (dsize == 0)
+            return strlen(src);
+        else
+            return 0;
+    }
+    i = 0;
+    while (*dst && i < dsize) {
+        ++dst;
+        ++i;
+    }
+    len = strlcpy(dst, src, dsize - i);
+    return len + i;
+}
+#endif
+
+#ifndef strlcpy
+size_t strlcpy(char *dst, const char *src, size_t dsize) {
+    size_t slen;
+    size_t i;
+
+    slen = strlen(src);
+    i = 0;
+    if (dsize < 1)
+        return slen;
+    while (src[i] != '\0' && i < dsize - 1) {
+        dst[i] = src[i];
+        i++;
+    }
+    dst[i] = '\0';
+    return slen;
+}
+#endif
+
 #endif // COLORS_H
-
-// \x1b[0;31m: Se usa típicamente cuando deseas asegurarte de que el
-// texto comience con un formato limpio en términos de atributos 
-// (sin negrita, sin subrayado, etc.) y solo aplique el color especificado.
-
-// \x1b[31m: Puede usarse cuando deseas mantener los atributos de texto existentes 
-// (si los hay) mientras cambias el color.
