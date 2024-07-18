@@ -4,6 +4,50 @@
 #include <string.h>
 #include <unistd.h>
 
+
+#ifndef strlcpy
+size_t strlcpy(char *dst, const char *src, size_t dsize) {
+    size_t slen;
+    size_t i;
+
+    slen = strlen(src);
+    i = 0;
+    if (dsize < 1)
+        return slen;
+    while (src[i] != '\0' && i < dsize - 1) {
+        dst[i] = src[i];
+        i++;
+    }
+    dst[i] = '\0';
+    return slen;
+}
+#endif
+
+// String manipulation functions
+#ifndef strlcat
+size_t strlcat(char *dst, const char *src, size_t dsize) {
+    size_t i;
+    size_t len;
+
+    if (!src)
+        return 0;
+    if (!dst) {
+        if (dsize == 0)
+            return strlen(src);
+        else
+            return 0;
+    }
+    i = 0;
+    while (*dst && i < dsize) {
+        ++dst;
+        ++i;
+    }
+    len = strlcpy(dst, src, dsize - i);
+    return len + i;
+}
+#endif
+
+
 size_t ft_strlcpy(char *dst, const char *src, size_t size);
 size_t ft_strlcat(char *dst, const char *src, size_t dsize);
 
