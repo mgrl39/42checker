@@ -49,7 +49,6 @@ void ft_putnbr(int nb)
     ft_putchar(nb % 10 + '0');
 }
 
-
 // Función auxiliar para imprimir el contenido de la memoria
 void print_memory(void *mem, size_t size)
 {
@@ -74,8 +73,8 @@ int main(void)
     ft_putstr("Testing ft_calloc function...\n");
 
     // Casos de prueba
-    size_t test_sizes[] = {0, 1, 10, 100};
-    size_t test_counts[] = {0, 1, 5, 3};
+    size_t test_sizes[] = {0, 1, 10, 100, 10, sizeof(long)};
+    size_t test_counts[] = {0, 1, 5, 3, 10, 10};
 
     size_t size_index = 0;
     while (size_index < sizeof(test_sizes) / sizeof(test_sizes[0]))
