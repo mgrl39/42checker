@@ -122,7 +122,50 @@ int main(void)
         i++;
     }
 
-    printf("Summary:\n");
+    // Additional test cases
+    printf("\nAdditional Test Cases:\n");
+
+    // Test case for empty string
+    printf("\nTesting ft_memchr with empty string:\n");
+    char *empty_str = "";
+    int c = 'A';
+    size_t n = 0;
+    void *result_ft = ft_memchr(empty_str, c, n);
+    void *result_std = memchr(empty_str, c, n);
+    if (result_ft == result_std)
+    {
+        printf(ANSI_COLOR_GREEN "Test Passed: ft_memchr(\"%s\", '%c', %zu) returned %p, expected %p\n" ANSI_COLOR_RESET,
+               empty_str, c, n, result_ft, result_std);
+        tests_passed++;
+    }
+    else
+    {
+        printf(ANSI_COLOR_RED "Test Failed: ft_memchr(\"%s\", '%c', %zu) returned %p, expected %p\n" ANSI_COLOR_RESET,
+               empty_str, c, n, result_ft, result_std);
+        tests_failed++;
+    }
+
+    // Test case for null-terminated string with '\0' character
+    printf("\nTesting ft_memchr with null-terminated string containing '\\0':\n");
+    char *null_str = "\0Hidden";
+    c = '\0';
+    n = ft_strlen(null_str); // Search until '\0'
+    result_ft = ft_memchr(null_str, c, n);
+    result_std = memchr(null_str, c, n);
+    if (result_ft == result_std)
+    {
+        printf(ANSI_COLOR_GREEN "Test Passed: ft_memchr(\"%s\", '%c', %zu) returned %p, expected %p\n" ANSI_COLOR_RESET,
+               null_str, c, n, result_ft, result_std);
+        tests_passed++;
+    }
+    else
+    {
+        printf(ANSI_COLOR_RED "Test Failed: ft_memchr(\"%s\", '%c', %zu) returned %p, expected %p\n" ANSI_COLOR_RESET,
+               null_str, c, n, result_ft, result_std);
+        tests_failed++;
+    }
+
+    printf("\nSummary:\n");
     printf(ANSI_COLOR_YELLOW "Tests passed: %d\n" ANSI_COLOR_RESET, tests_passed);
     printf(ANSI_COLOR_YELLOW "Tests failed: %d\n" ANSI_COLOR_RESET, tests_failed);
 
