@@ -1,5 +1,7 @@
 #include "colors.h"
 #include <stddef.h>
+#include <string.h>
+#include <unistd.h>
 
 void	ft_bzero(void *s, size_t n);
 
@@ -70,9 +72,11 @@ int  main(void)
   "",
   "\0Hidden",
   "The quick brown fox jumps over the lazy dog",
+  "",
+  "Hello, world!"
   };
 
-  size_t test_sizes[] = {5, 10,0,7,8,1,6,20};
+  size_t test_sizes[] = {5, 10, 0, 7, 8, 1, 6, 20, 0, 12};
   int test_cases_count = sizeof(test_cases) / sizeof(test_cases[0]);
   int tests_passed = 0;
   int tests_failed = 0;
@@ -126,5 +130,4 @@ int  main(void)
     ft_putstr(ANSI_COLOR_RESET "\n");
 
     return 0;
-  
 }
