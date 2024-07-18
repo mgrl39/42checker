@@ -1,6 +1,8 @@
 #include "colors.h"
 #include <limits.h>
 #include <stdio.h>
+#include <unistd.h>  // Agregamos esta librería para la función write
+#include <stdlib.h>  // Agregamos esta librería para la función atoi
 
 // Prototipo de la función ft_atoi
 int ft_atoi(const char *nptr);
@@ -117,7 +119,7 @@ int test_atoi(int *tests_passed, int *tests_failed) {
 const char *escape_str(const char *str) {
     static char buffer[1024];
     int i = 0, j = 0;
-    while (str[i] != '\0' && j < sizeof(buffer) - 4) {
+    while (str[i] != '\0' && j < (int)sizeof(buffer) - 4) {
         if (str[i] < 32 || str[i] > 126) {
             j += sprintf(buffer + j, "\\x%02X", (unsigned char)str[i]);
         } else {
@@ -141,7 +143,7 @@ int main(void) {
 
     int tests_passed = 0;
     int tests_failed = 0;
-    int result = test_atoi(&tests_passed, &tests_failed);
+    test_atoi(&tests_passed, &tests_failed);
 
     ft_putstr("Summary:\n");
     ft_putstr(ANSI_COLOR_YELLOW "Tests passed: ");
