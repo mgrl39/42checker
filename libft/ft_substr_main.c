@@ -1,11 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "libft.h" // Asumiendo que este archivo contiene la declaración de ft_substr
-#include "colors.h" // Definición de colores ANSI para mejor visualización
+#include "libft.h" // Assuming this file contains the declaration of ft_substr
+#include "colors.h" // Definition of ANSI colors for better visualization
 
-#ifndef mg_substr
-#define mg_substr
 char	*mg_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*sub;
@@ -28,11 +26,9 @@ char	*mg_substr(char const *s, unsigned int start, size_t len)
 		sub[i] = s[start + i];
 		i++;
 	}
+	sub[i] = '\0'; // Null-terminate the string
 	return (sub);
 }
-#endif
-
-char		*ft_substr(char const *s, unsigned int start, size_t len);
 
 char	*ft_strdup(const char *s1)
 {
@@ -63,32 +59,34 @@ size_t	ft_strlen(const char *str)
     return (i);
 }
 
-// Función para imprimir una cadena
+// Function to print a string
 void print_string(const char *label, const char *str)
 {
     printf("%s: \"%s\"\n", label, str);
 }
 
-// Función para imprimir el resultado de ft_substr
+// Function to print the result of ft_substr
 void test_substr(const char *s, unsigned int start, size_t len, int *tests_passed, int *tests_failed)
 {
-	char *result = ft_substr(s, start, len);
-	char *expected = mg_substr(s, start, len);
-	
-    if (strcmp(result, expected) == 0)
+    char *result = ft_substr(s, start, len);
+    char *expected = mg_substr(s, start, len);
+
+    if (result && strcmp(result, expected) == 0)
     {
         print_string("Original", s);
         printf("Start: %u, Length: %zu\n", start, len);
         print_string("Substring", result);
-        free(result); // Liberar memoria asignada por ft_substr
         printf(ANSI_COLOR_GREEN "Test Passed: ft_substr(\"%s\", %u, %zu)\n" ANSI_COLOR_RESET, s, start, len);
         (*tests_passed)++;
     }
     else
     {
-        printf(ANSI_COLOR_RED "Test Failed: ft_substr(\"%s\", %u, %zu) returned NULL\n" ANSI_COLOR_RESET, s, start, len);
+        printf(ANSI_COLOR_RED "Test Failed: ft_substr(\"%s\", %u, %zu) returned \"%s\" (expected \"%s\")\n" ANSI_COLOR_RESET, s, start, len, result, expected);
         (*tests_failed)++;
     }
+    
+    free(result); // Free memory allocated by ft_substr
+    free(expected); // Free memory allocated by mg_substr
     printf("\n");
 }
 
@@ -102,7 +100,7 @@ int main(void)
 
     printf("Testing ft_substr function...\n\n");
 
-    // Casos normales
+    // Normal cases
     start = 0;
     len = 5;
     test_substr(s, start, len, &tests_passed, &tests_failed);
@@ -111,16 +109,16 @@ int main(void)
     len = 6;
     test_substr(s, start, len, &tests_passed, &tests_failed);
 
-    // Casos especiales
-    start = 15; // Más allá de la longitud de s
+    // Special cases
+    start = 15; // Beyond the length of s
     len = 5;
     test_substr(s, start, len, &tests_passed, &tests_failed);
 
     start = 7;
-    len = 20; // Longitud mayor que la parte restante de s desde start
+    len = 20; // Length greater than the remaining part of s from start
     test_substr(s, start, len, &tests_passed, &tests_failed);
 
-    // Casos de borde y situaciones especiales
+    // Edge cases and special situations
     start = 0;
     len = 0;
     test_substr(s, start, len, &tests_passed, &tests_failed);
@@ -129,19 +127,19 @@ int main(void)
     len = 0;
     test_substr(s, start, len, &tests_passed, &tests_failed);
 
-    start = 15; // Más allá de la longitud de s
+    start = 15; // Beyond the length of s
     len = 0;
     test_substr(s, start, len, &tests_passed, &tests_failed);
 
     start = 0;
-    len = 100; // Longitud mayor que la longitud total de s
+    len = 100; // Length greater than the total length of s
     test_substr(s, start, len, &tests_passed, &tests_failed);
 
     start = 7;
-    len = 5; // Parte intermedia de s
+    len = 5; // Intermediate part of s
     test_substr(s, start, len, &tests_passed, &tests_failed);
 
-    // Resumen final
+    // Final summary
     printf(ANSI_COLOR_YELLOW "\nSummary:\n");
     printf("Tests passed: %d\n", tests_passed);
     printf("Tests failed: %d\n" ANSI_COLOR_RESET, tests_failed);
