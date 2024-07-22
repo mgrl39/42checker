@@ -4,6 +4,34 @@
 #include "libft.h" // Asumiendo que este archivo contiene la declaración de ft_substr
 #include "colors.h" // Definición de colores ANSI para mejor visualización
 
+#ifndef mg_substr
+#define mg_substr
+char	*mg_substr(char const *s, unsigned int start, size_t len)
+{
+	char	*sub;
+	size_t	s_len;
+	size_t	i;
+
+	if (!s)
+		return (NULL);
+	s_len = ft_strlen(s);
+	if (start >= s_len)
+		return (ft_strdup(""));
+	if (len > s_len - start)
+		len = s_len - start;
+	sub = (char *)ft_calloc(len + 1, sizeof(char));
+	if (!sub)
+		return (NULL);
+	i = 0;
+	while (i < len)
+	{
+		sub[i] = s[start + i];
+		i++;
+	}
+	return (sub);
+}
+#endif
+
 char		*ft_substr(char const *s, unsigned int start, size_t len);
 
 char	*ft_strdup(const char *s1)
@@ -44,8 +72,10 @@ void print_string(const char *label, const char *str)
 // Función para imprimir el resultado de ft_substr
 void test_substr(const char *s, unsigned int start, size_t len, int *tests_passed, int *tests_failed)
 {
-    char *result = ft_substr(s, start, len);
-    if (result)
+	char *result = ft_substr(s, start, len);
+	char *expected = mg_substr(s, start, len);
+	
+    if (strcmp(result, expected) == 0)
     {
         print_string("Original", s);
         printf("Start: %u, Length: %zu\n", start, len);
